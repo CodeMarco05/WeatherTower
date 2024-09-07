@@ -1,0 +1,1 @@
+make the js a type="module" for usage of imports (in the html)

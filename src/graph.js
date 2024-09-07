@@ -1,19 +1,18 @@
 let parsedData = null;
 const options = {
-  title: 'Temperature over time',
-  curveType: 'function',
-  hAxis: {
-    title: 'Time',
-    titleTextStyle: {
-      color: '#333'
-    },
+  title: 'Temperature and Humidity Over Time',
+  hAxis: { title: 'Time' },
+  vAxes: {
+    0: { title: 'Temperature' },
+    1: { title: 'Rain / Snow' },
   },
-  vAxis: {
-    title: 'Temperature',
-    titleTextStyle: {
-      color: '#333'
-    },
-  }
+  series: {
+    0: { targetAxisIndex: 0 },
+    1: { targetAxisIndex: 1 },
+    2: { targetAxisIndex: 1 }
+  },
+  vAxis: {viewWindow: {min: 0}},
+  legend: { position: 'bottom' },
 };
 
 google.charts.load('current', { packages: ['corechart'] });
@@ -21,7 +20,7 @@ window.addEventListener('resize', renderGraph);
 
 export function renderGraph() {
 
-  let data = [ ['Time', 'Temperature', { role: 'annotation' }] ];
+  let data = [ ['Time', 'Temperature', { role: 'annotation' }, 'Rain', 'Snow'] ];
 
   console.log(parsedData);
   
@@ -29,7 +28,7 @@ export function renderGraph() {
 
   parsedData.forEach(entry => {
     const annotation = entry["time_formated"] == current_time ? 'Now' : null;
-    data.push([entry["time_formated"], entry["temperature"], annotation]);
+    data.push([entry["time_formated"], entry["temperature"], annotation, entry["rain"], entry["snowfall"]]);
   });
 
   data = google.visualization.arrayToDataTable(data);
@@ -65,7 +64,6 @@ export function createDataArray(weatherData) {
       throw new Error('Invalid weather data format');
     }
 
-
     // Ensure parsedData is an array
     if (!Array.isArray(parsedData)) {
       throw new Error('Parsed data is not an array');
@@ -74,11 +72,4 @@ export function createDataArray(weatherData) {
   } catch (error) {
     console.error('Error parsing weather data:', error);
   }
-
-  //render the graph
-  /*try {
-    renderGraph();
-  } catch (error) {
-    console.error('Error rendering graph:', error);
-  }*/
 }
