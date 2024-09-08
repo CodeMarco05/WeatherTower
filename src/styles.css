@@ -24,6 +24,7 @@
 #chart{
   width: 100%;
   height: 600px;
+  margin-bottom: 20px;
 }
 
 #options_div{
@@ -31,12 +32,59 @@
   justify-content: center;
   align-items: center;
   margin: 10px;
+  font-size: large;
 }
 
 select{
-  font-size: 1.4em;
-  width: 200px;
+  font-size: 1.2em;
+  width: 150px;
+  padding: 10px;
 }
+
+#table_for_weather_description {
+  background-color: #2f2f2f;
+  border-collapse: collapse;
+  border: 1px solid white;
+  text-align: left;
+  width: auto;
+  font-weight: 500;
+  white-space: normal;
+}
+#table_for_weather_description tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.243); /* Adds a white line between rows */
+  height: 40px; /* Set a fixed height for the rows */
+}
+
+#table_for_weather_description tr:last-child {
+  border-bottom: 1px solid white; /* Makes the bottom border of the last row plain white */
+}
+
+#table_for_weather_description td {
+  padding-right: 20px;
+  padding-left: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.243); /* Adds a white line between columns */
+}
+
+#table_for_weather_description td:last-child {
+  border-right: none; /* Removes the border from the last column */
+}
+
+#content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+#left {
+  flex: 1;
+}
+#right {
+  flex: 1;
+  text-align: left;
+  margin-left: 20px;
+}
+
 
 .option_label{
   font-size: 1.2em;

@@ -4,7 +4,7 @@ const options = {
   hAxis: { title: 'Time' },
   vAxes: {
     0: { title: 'Temperature' },
-    1: { title: 'Rain / Snow' },
+    1: { title: 'Rain / Snow in mm' },
   },
   series: {
     0: { targetAxisIndex: 0 },
@@ -28,7 +28,7 @@ export function renderGraph() {
 
   parsedData.forEach(entry => {
     const annotation = entry["time_formated"] == current_time ? 'Now' : null;
-    data.push([entry["time_formated"], entry["temperature"], annotation, entry["rain"], entry["snowfall"]]);
+    data.push([entry["time_formated"], entry["temperature"], annotation, entry["rain"], (entry["snowfall"] * 10)]);
   });
 
   data = google.visualization.arrayToDataTable(data);
