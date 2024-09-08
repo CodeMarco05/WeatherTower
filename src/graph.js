@@ -22,8 +22,6 @@ export function renderGraph() {
 
   let data = [ ['Time', 'Temperature', { role: 'annotation' }, {role: 'annotation'}, 'Rain', 'Snow'] ];
 
-  console.log(parsedData);
-  
   const current_time = getCurrentDataInFromat();
 
   parsedData.forEach((entry, index) => {
@@ -56,6 +54,8 @@ function getCurrentDataInFromat() {
 
 
 export function createParsedData(weatherData) {
+  console.log('weatherData:', weatherData);
+  
   try {
     // Check if weatherData is already an object
     if (typeof weatherData === 'string') {
