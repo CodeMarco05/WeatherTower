@@ -4,7 +4,7 @@ const options = {
   hAxis: { title: 'Time' },
   vAxes: {
     0: { title: 'Temperature' },
-    1: { title: 'Rain / Snow in mm' },
+    1: { title: 'Rain / Snow in mm', gridlines: { color: 'none' } },
   },
   series: {
     0: { targetAxisIndex: 0 },
@@ -53,7 +53,7 @@ function getCurrentDataInFromat() {
 }
 
 
-export function createDataArray(weatherData) {
+export function createParsedData(weatherData) {
   try {
     // Check if weatherData is already an object
     if (typeof weatherData === 'string') {

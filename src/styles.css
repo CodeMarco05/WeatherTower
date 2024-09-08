@@ -85,6 +85,25 @@ select{
   margin-left: 20px;
 }
 
+#right p {
+  color: white; /* Example style: change text color to white */
+  font-size: 1.1em; /* Example style: change font size */
+  line-height: 1.5; /* Example style: change line height */
+  margin-bottom: 10px; /* Example style: add space between paragraphs */
+}
+
+#commit_button{
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-left: 20px;
+}
 
 .option_label{
   font-size: 1.2em;

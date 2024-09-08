@@ -1,7 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::{fs::{read, File}, io::BufReader};
+use std::{fs::File, io::BufReader};
 
 use serde_json::Value;
 use weather_tower_lib::{get_json_weather_data, models::hour_element::Element, query_params::QueryParams};
@@ -57,14 +57,25 @@ fn transform_to_json(elements: &Vec<Element>) -> String {
     return res;
 }
 
+fn get_coordinates_for_city(city: &str) -> (f64, f64){
+    match city {
+        "ravensburg" => return (47.782, 9.6106),
+        //"berlin" => return ()
+        _ => panic!("City not found")
+    }
+}
+
 #[tauri::command]
-fn get_weather_data() -> String{
+fn get_weather_data(city: String, past_days: u8) -> String{
+
+    let coordinates: (f64, f64) = get_coordinates_for_city(&city);
+
     let params = QueryParams{
-        latitude: 47.782,
-        longitude: 9.6106,
+        latitude: coordinates.0,
+        longitude: coordinates.1,
         hourly: vec!["temperature_2m", "rain", "snowfall", "weather_code"],
         timezone: "Europe/Berlin",
-        past_days: 0
+        past_days: past_days as i32
     };
 
     let elements = get_json_weather_data(params);
@@ -76,8 +87,6 @@ fn get_weather_data() -> String{
 
 
 fn main() {
-
-
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![get_weather_data])
         .run(tauri::generate_context!())
