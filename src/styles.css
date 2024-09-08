@@ -37,7 +37,8 @@
 
 select{
   font-size: 1.2em;
-  width: 150px;
+  width: auto;
+  min-width: 15ch;
   padding: 10px;
 }
 

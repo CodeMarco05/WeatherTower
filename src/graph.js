@@ -20,15 +20,17 @@ window.addEventListener('resize', renderGraph);
 
 export function renderGraph() {
 
-  let data = [ ['Time', 'Temperature', { role: 'annotation' }, 'Rain', 'Snow'] ];
+  let data = [ ['Time', 'Temperature', { role: 'annotation' }, {role: 'annotation'}, 'Rain', 'Snow'] ];
 
   console.log(parsedData);
   
   const current_time = getCurrentDataInFromat();
 
-  parsedData.forEach(entry => {
-    const annotation = entry["time_formated"] == current_time ? 'Now' : null;
-    data.push([entry["time_formated"], entry["temperature"], annotation, entry["rain"], (entry["snowfall"] * 10)]);
+  parsedData.forEach((entry, index) => {
+    const annotation_1 = entry["time_formated"] == current_time ? 'Now' : null;
+    const date = entry["time_formated"].split(':')[0];
+    const annotation_2 = index % 24 === 0 ? `${date}` : null;
+    data.push([entry["time_formated"], entry["temperature"], annotation_1, annotation_2,entry["rain"], (entry["snowfall"] * 10)]);
   });
 
   data = google.visualization.arrayToDataTable(data);

@@ -60,7 +60,17 @@ fn transform_to_json(elements: &Vec<Element>) -> String {
 fn get_coordinates_for_city(city: &str) -> (f64, f64){
     match city {
         "ravensburg" => return (47.782, 9.6106),
-        //"berlin" => return ()
+        "berlin" => return (52.5244, 13.4105),
+        "hamburg" => return (53.5507, 9.993),
+        "eidelstedt" => return (53.607, 9.9054),
+        "munich" => return (51.607, 13.3124),
+        "cologne" => return (50.9333, 6.95),
+        "frankfurt" => return (50.1155, 8.6842),
+        "stuttgart" => return (48.7823, 9.177),
+        "duesseldorf" => return (51.2217, 6.7762),
+        "dortmund" => return (51.5149, 7.466),
+        "essen" => return (51.4566, 7.0123),
+        "leipzig" => return (51.3396, 12.3713),
         _ => panic!("City not found")
     }
 }
